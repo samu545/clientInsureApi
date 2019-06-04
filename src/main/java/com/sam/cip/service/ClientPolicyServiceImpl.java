@@ -27,18 +27,7 @@ public class ClientPolicyServiceImpl implements ClientPolicyService {
 
     @Override
     public Status submitPolicyRecords(RecordsRequest recordsJson) {
-        List<ErrorRecord> errors = new ArrayList<>();
-        for (Record record : recordsJson.getRecords().getRecord()) {
-            ErrorRecord errorRecord = validateAndSavePolicyRecord(record);
-            if(errorRecord!=null){
-                errors.add(errorRecord);
-            }
-        }
-        if (errors.size() < 1) {
-            return new Status("SUCCESS", null);
-        } else {
-            return new Status("FAIL", errors);
-        }
+        return submitRecords(recordsJson.getRecords().getRecord());
     }
 
 
@@ -62,7 +51,27 @@ public class ClientPolicyServiceImpl implements ClientPolicyService {
         return new Status(status, errors);
     }
 
-    public ErrorRecord validateAndSavePolicyRecord(Record record) {
+    @Override
+    public Status submitCsvListRecords(List<Record> records) {
+        return submitRecords(records);
+    }
+
+    private Status submitRecords(List<Record> records) {
+        List<ErrorRecord> errors = new ArrayList<>();
+        for (Record record : records) {
+            ErrorRecord errorRecord = validateAndSavePolicyRecord(record);
+            if (errorRecord != null) {
+                errors.add(errorRecord);
+            }
+        }
+        if (errors.size() < 1) {
+            return new Status("SUCCESS", null);
+        } else {
+            return new Status("FAIL", errors);
+        }
+    }
+
+    private ErrorRecord validateAndSavePolicyRecord(Record record) {
         ErrorRecord errorRecord = null;
         if (record.getMonthlyPremium() > 0 && record.getMonthlyPremium() <= 0.025 * record.getInsuredAmount()) {
             try {
