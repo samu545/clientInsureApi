@@ -3,6 +3,7 @@ package com.sam.cip.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,6 +17,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
+import java.util.Objects;
 
 
 @Entity
@@ -23,6 +25,7 @@ import java.io.Serializable;
         @Index(name = "UK_CLIENT_POLICY", columnList = "clientID, policyID", unique = true)
 })
 @XmlRootElement(name = "record")
+@JsonPropertyOrder({ "clientID", "policyID", "insuredAmount", "monthlyPremium", "discount", "description"})
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Record implements Serializable {
 
