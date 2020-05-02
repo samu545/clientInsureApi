@@ -32,4 +32,4 @@ jobs:
         ls -latr
         echo $GITHUB_USERNAME
         echo $GITHUB_WORKSPACE
-        mvn deploy -s $GITHUB_WORKSPACE/settings.xml
+        mvn deploy -s /usr/share/apache-maven-3.6.3/conf/settings.xml
