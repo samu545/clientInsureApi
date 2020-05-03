@@ -23,13 +23,13 @@ jobs:
       run: |
         mvn --version
         mvn -B package --file pom.xml
-
+    - name: Check Env params
+      run: |
+        echo env
     - name: Publish to GitHub Package Registry
       env:
-        GITHUB_USERNAME: ${{ secrets.GITHUB_USERNAME }}
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ github.token }} # GITHUB_TOKEN is the default env for the password
       run: |
         ls -latr
-        echo $GITHUB_USERNAME
-        echo $GITHUB_WORKSPACE
-        mvn deploy -s /usr/share/apache-maven-3.6.3/conf/settings.xml
+        echo $GITHUB_TOKEN
+        mvn deploy
