@@ -25,7 +25,7 @@ jobs:
         mvn -B package --file pom.xml
     - name: Publish to GitHub Package Registry
       env:
-        GITHUB_TOKEN: ${{ github.token }} # GITHUB_TOKEN is the default env for the password
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GITHUB_TOKEN is the default env for the password
       run: |
         ls -latr
         echo $GITHUB_TOKEN
