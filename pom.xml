@@ -63,12 +63,12 @@
    <snapshotRepository>
      <id>github</id>
      <name>SNAPSHOTS Apache Maven Packages</name>
-     <url>https://maven.pkg.github.com/IAT-Global</url>
+     <url>https://maven.pkg.github.com/IAT-Global/clientInsureApi</url>
    </snapshotRepository>
    <repository>
      <id>github</id>
      <name>RELEASE OWNER Apache Maven Packages</name>
-     <url>https://maven.pkg.github.com/IAT-Global</url>
+     <url>https://maven.pkg.github.com/IAT-Global/clientInsureApi</url>
    </repository>
 </distributionManagement>
 
